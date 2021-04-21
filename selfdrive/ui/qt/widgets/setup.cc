@@ -134,23 +134,23 @@ PrimeAdWidget::PrimeAdWidget(QWidget* parent) : QWidget(parent) {
   vlayout->setMargin(30);
   vlayout->setSpacing(15);
 
-  vlayout->addWidget(new QLabel("Upgrade now"), 1, Qt::AlignTop);
-
-  QLabel* description = new QLabel("Become a comma prime member in the comma connect app and get premium features!");
+  vlayout->addWidget(new QLabel("✓ Todo OK"), 1, Qt::AlignTop);
+  
+  QLabel* description = new QLabel("Arranca el coche para iniciar la conducción asistida.");
   description->setStyleSheet(R"(
     font-size: 50px;
     color: #b8b8b8;
   )");
   description->setWordWrap(true);
   vlayout->addWidget(description, 2, Qt::AlignTop);
-
+/*
   QVector<QString> features = {"✓ REMOTE ACCESS", "✓ 14 DAYS OF STORAGE", "✓ DEVELOPER PERKS"};
   for (auto &f: features) {
     QLabel* feature = new QLabel(f);
     feature->setStyleSheet(R"(font-size: 40px;)");
     vlayout->addWidget(feature, 0, Qt::AlignBottom);
   }
-
+*/
   setLayout(vlayout);
 }
 
@@ -163,7 +163,7 @@ SetupWidget::SetupWidget(QWidget* parent) : QFrame(parent) {
   QVBoxLayout* finishRegistationLayout = new QVBoxLayout;
   finishRegistationLayout->setMargin(30);
 
-  QLabel* registrationDescription = new QLabel("Pair your device with the comma connect app");
+  QLabel* registrationDescription = new QLabel("Conéctate a una red wifi o empareja el dispositivo con la app de comma connect");
   registrationDescription->setWordWrap(true);
   registrationDescription->setAlignment(Qt::AlignCenter);
   registrationDescription->setStyleSheet(R"(
