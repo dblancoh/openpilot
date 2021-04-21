@@ -8,6 +8,7 @@
 #include <QHBoxLayout>
 #include <QMouseEvent>
 #include <QVBoxLayout>
+#include <QLocale>
 
 #include "common/util.h"
 #include "common/params.h"
@@ -88,7 +89,7 @@ OffroadHome::OffroadHome(QWidget* parent) : QWidget(parent) {
   header_layout->addWidget(alert_notification, 0, Qt::AlignHCenter | Qt::AlignRight);
 
   std::string brand = Params().read_db_bool("Passive") ? "dashcam" : "openpilot";
-  QLabel* version = new QLabel(QString::fromStdString(brand + " v" + Params().get("Version")));
+  QLabel* version = new QLabel(QString::fromStdString(brand + " v" + Params().get("Version").substr(0,6) + Params().get("Version").substr(15,10)));
   version->setStyleSheet(R"(font-size: 55px;)");
   header_layout->addWidget(version, 0, Qt::AlignHCenter | Qt::AlignRight);
 
@@ -148,7 +149,10 @@ void OffroadHome::refresh() {
     return;
   }
 
-  date->setText(QDateTime::currentDateTime().toString("dddd, MMMM d"));
+  QDateTime date2 = QDateTime::currentDateTime();
+  QString strdate = QLocale{QLocale::Spanish}.toString(date2, "dddd, d MMMM"); 
+
+  date->setText(strdate);
 
   // update alerts
 
