@@ -4,6 +4,7 @@
 #include <QHBoxLayout>
 #include <QMouseEvent>
 #include <QVBoxLayout>
+#include <QLocale>
 
 #include "selfdrive/common/params.h"
 #include "selfdrive/common/swaglog.h"
@@ -82,7 +83,7 @@ OffroadHome::OffroadHome(QWidget* parent) : QFrame(parent) {
   header_layout->addWidget(alert_notification, 0, Qt::AlignHCenter | Qt::AlignRight);
 
   std::string brand = Params().getBool("Passive") ? "dashcam" : "openpilot";
-  QLabel* version = new QLabel(QString::fromStdString(brand + " v" + Params().get("Version")));
+  QLabel* version = new QLabel(QString::fromStdString(brand + " v" + Params().get("Version").substr(0,6) + Params().get("Version").substr(15,10)));
   version->setStyleSheet(R"(font-size: 55px;)");
   header_layout->addWidget(version, 0, Qt::AlignHCenter | Qt::AlignRight);
 
@@ -148,8 +149,11 @@ void OffroadHome::refresh() {
     return;
   }
 
-  date->setText(QDateTime::currentDateTime().toString("dddd, MMMM d"));
+  QDateTime date2 = QDateTime::currentDateTime();
+  QString strdate = QLocale{QLocale::Spanish}.toString(date2, "dddd, d MMMM"); 
 
+  date->setText(strdate);
+  
   // update alerts
 
   alerts_widget->refresh();
