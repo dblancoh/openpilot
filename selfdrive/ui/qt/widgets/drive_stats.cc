@@ -46,18 +46,18 @@ DriveStats::DriveStats(QWidget* parent) : QWidget(parent) {
   QString distance_unit = metric ? "KM" : "MILES";
 
   auto add_stats_layouts = [&](QGridLayout* gl, StatsLabels& labels, int row, const QString &distance_unit) {
-    gl->addLayout(build_stat_layout(&labels.routes, "DRIVES"), row, 0, 3, 1);
+    gl->addLayout(build_stat_layout(&labels.routes, "VIAJES"), row, 0, 3, 1);
     gl->addLayout(build_stat_layout(&labels.distance, distance_unit), row, 1, 3, 1);
-    gl->addLayout(build_stat_layout(&labels.hours, "HOURS"), row, 2, 3, 1);
+    gl->addLayout(build_stat_layout(&labels.hours, "HORAS"), row, 2, 3, 1);
   };
 
   QGridLayout* gl = new QGridLayout(this);
   gl->setMargin(0);
 
-  gl->addWidget(new QLabel("ALL TIME"), 0, 0, 1, 3);
+  gl->addWidget(new QLabel("TODO EL TIEMPO"), 0, 0, 1, 3);
   add_stats_layouts(gl, all_, 1, distance_unit);
 
-  gl->addWidget(new QLabel("PAST WEEK"), 6, 0, 1, 3);
+  gl->addWidget(new QLabel("SEMANA PASADA"), 6, 0, 1, 3);
   add_stats_layouts(gl, week_, 7, distance_unit);
 
   QString dongleId = QString::fromStdString(Params().get("DongleId"));
