@@ -5,6 +5,9 @@
 
 #include <QDebug>
 
+#include <QNetworkInterface>
+
+
 #ifndef QCOM
 #include "selfdrive/ui/qt/offroad/networking.h"
 #endif
@@ -103,6 +106,16 @@ DevicePanel::DevicePanel(QWidget* parent) : QWidget(parent) {
 
   QString serial = QString::fromStdString(params.get("HardwareSerial", false));
   main_layout->addWidget(new LabelControl("Serial", serial));
+
+  // ernie
+  main_layout->addWidget(horizontal_line());
+  const QHostAddress &localhost = QHostAddress(QHostAddress::LocalHost);
+  QString ipadd = "";
+  for (const QHostAddress &address: QNetworkInterface::allAddresses()) {
+	if (address.protocol() == QAbstractSocket::IPv4Protocol && address != localhost)
+		 ipadd = address.toString();
+  }
+  main_layout->addWidget(new LabelControl("IP Address", ipadd));
 
   // offroad-only buttons
 
