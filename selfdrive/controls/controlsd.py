@@ -224,8 +224,7 @@ class Controls:
     # Handle lane change
     if self.sm['lateralPlan'].laneChangeState == LaneChangeState.preLaneChange:
       direction = self.sm['lateralPlan'].laneChangeDirection
-      if (CS.rightBlindspot and direction == LaneChangeDirection.left) 
-         #or \
+      if (CS.rightBlindspot and direction == LaneChangeDirection.left): #or \
          #(CS.leftBlindspot and direction == LaneChangeDirection.right):
         self.events.add(EventName.laneChangeBlocked)
       else:
