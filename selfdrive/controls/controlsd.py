@@ -221,9 +221,17 @@ class Controls:
       else:
         self.events.add(EventName.calibrationInvalid)
 
+    #ernie test
+    if (CS.rightBlindspot):
+      with open('output_bsm.txt', 'w') as f:
+          f.write('Right BS activated')
+    if (CS.leftBlindspot):
+      with open('output_bsm.txt', 'w') as f:
+          f.write('Left BS activated')
+
     # Handle lane change
     if self.sm['lateralPlan'].laneChangeState == LaneChangeState.preLaneChange:
-      direction = self.sm['lateralPlan'].laneChangeDirection
+      direction = self.sm['lateralPlan'].laneChangeDirection    
       if (CS.rightBlindspot and direction == LaneChangeDirection.left): #or \
          #(CS.leftBlindspot and direction == LaneChangeDirection.right):
         self.events.add(EventName.laneChangeBlocked)
