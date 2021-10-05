@@ -223,11 +223,14 @@ class Controls:
 
     #ernie test
     if (CS.rightBlindspot):
-      with open('output_bsm.txt', 'w') as f:
-          f.write('Right BS activated')
+      with open('output_bsm.txt', 'a') as f:
+          f.write('Right BS activated\n')
+          f.close()
     if (CS.leftBlindspot):
-      with open('output_bsm.txt', 'w') as f:
-          f.write('Left BS activated')
+      with open('output_bsm.txt', 'a') as f:
+          f.write('Left BS activated\n')
+          f.close()
+
 
     # Handle lane change
     if self.sm['lateralPlan'].laneChangeState == LaneChangeState.preLaneChange:
