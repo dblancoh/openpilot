@@ -112,6 +112,23 @@ class CarState(CarStateBase):
     if self.CP.enableBsm:
       ret.leftBlindspot = (cp.vl["BSM"]["L_ADJACENT"] == 1) or (cp.vl["BSM"]["L_APPROACHING"] == 1)
       ret.rightBlindspot = (cp.vl["BSM"]["R_ADJACENT"] == 1) or (cp.vl["BSM"]["R_APPROACHING"] == 1)
+      if (cp.vl["BSM"]["L_ADJACENT"] == 1):
+          with open('/data/openpilot/output_bsm.txt', 'a') as f:
+            f.write('BSM-L_ADJACENT = 1 ==> leftBlindspot=true\n')
+            f.close()
+      if (cp.vl["BSM"]["L_APPROACHING"] == 1):
+          with open('/data/openpilot/output_bsm.txt', 'a') as f:
+            f.write('BSM-L_APPROACHING = 1 ==> leftBlindspot=true\n')
+            f.close()
+      if (cp.vl["BSM"]["R_ADJACENT"] == 1):
+          with open('/data/openpilot/output_bsm.txt', 'a') as f:
+            f.write('BSM-R_ADJACENT = 1 ==> rightBlindspot=true\n')
+            f.close()            
+      if (cp.vl["BSM"]["R_APPROACHING"] == 1):
+          with open('/data/openpilot/output_bsm.txt', 'a') as f:
+            f.write('BSM-R_APPROACHING = 1 ==> rightBlindspot=true\n')
+            f.close()            
+
 
     return ret
 
