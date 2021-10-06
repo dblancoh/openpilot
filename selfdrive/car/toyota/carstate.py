@@ -5,7 +5,6 @@ from selfdrive.car.interfaces import CarStateBase
 from opendbc.can.parser import CANParser
 from selfdrive.config import Conversions as CV
 from selfdrive.car.toyota.values import CAR, DBC, STEER_THRESHOLD, NO_STOP_TIMER_CAR, TSS2_CAR
-from datetime import date
 
 
 class CarState(CarStateBase):
@@ -114,9 +113,8 @@ class CarState(CarStateBase):
       ret.leftBlindspot = (cp.vl["BSM"]["L_ADJACENT"] == 1) or (cp.vl["BSM"]["L_APPROACHING"] == 1)
       ret.rightBlindspot = (cp.vl["BSM"]["R_ADJACENT"] == 1) or (cp.vl["BSM"]["R_APPROACHING"] == 1)
       if (cp.vl["BSM"]["L_ADJACENT"] == 1):
-          with open('/data/openpilot/output_bsm.txt', 'a') as f:
-            f.write(datetime.now())
-            f.write(' - BSM-L_ADJACENT = 1 ==> leftBlindspot=true\n')
+          with open('/data/openpilot/output_bsm.txt', 'a') as f:            
+            f.write('BSM-L_ADJACENT = 1 ==> leftBlindspot=true\n')
             f.close()
       """
       if (cp.vl["BSM"]["L_APPROACHING"] == 1):
@@ -126,9 +124,8 @@ class CarState(CarStateBase):
             f.close()
       """
       if (cp.vl["BSM"]["R_ADJACENT"] == 1):
-          with open('/data/openpilot/output_bsm.txt', 'a') as f:
-            f.write(datetime.now())
-            f.write(' - BSM-R_ADJACENT = 1 ==> rightBlindspot=true\n')
+          with open('/data/openpilot/output_bsm.txt', 'a') as f:            
+            f.write('BSM-R_ADJACENT = 1 ==> rightBlindspot=true\n')
             f.close()            
       """
       if (cp.vl["BSM"]["R_APPROACHING"] == 1):
