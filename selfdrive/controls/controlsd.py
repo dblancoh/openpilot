@@ -222,10 +222,6 @@ class Controls:
         self.events.add(EventName.calibrationInvalid)
 
     #ernie test
-    if (CS.rightBlindspot):
-      with open('/data/openpilot/output_bsm.txt', 'a') as f:
-          f.write('  Right BS activated\n')
-          f.close()
     if (CS.leftBlindspot):
       with open('/data/openpilot/output_bsm.txt', 'a') as f:
           f.write('  Left BS activated\n')
