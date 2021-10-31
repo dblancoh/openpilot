@@ -191,9 +191,9 @@ PrimeAdWidget::PrimeAdWidget(QWidget* parent) : QFrame(parent) {
   description->setWordWrap(true);
   main_layout->addWidget(description, 0, Qt::AlignTop);
 
-/*
   main_layout->addStretch();
 
+/*
   QLabel *features = new QLabel("PRIME FEATURES:");
   features->setStyleSheet("font-size: 41px; font-weight: bold; color: #E5E5E5;");
   main_layout->addWidget(features, 0, Qt::AlignBottom);
@@ -207,14 +207,14 @@ PrimeAdWidget::PrimeAdWidget(QWidget* parent) : QFrame(parent) {
     l->setStyleSheet("font-size: 50px; margin-bottom: 15px;");
     main_layout->addWidget(l, 0, Qt::AlignBottom);
   }
-
+*/
   setStyleSheet(R"(
     PrimeAdWidget {
       border-radius: 10px;
       background-color: #333333;
     }
   )");
-*/
+
 }
 
 
