@@ -4,6 +4,7 @@
 #include <QHBoxLayout>
 #include <QMouseEvent>
 #include <QVBoxLayout>
+#include <QLocale>
 
 #include "selfdrive/common/params.h"
 #include "selfdrive/ui/qt/util.h"
@@ -160,6 +161,9 @@ void OffroadHome::hideEvent(QHideEvent *event) {
 
 void OffroadHome::refresh() {
   date->setText(QDateTime::currentDateTime().toString("dddd, MMMM d"));
+  QDateTime date2 = QDateTime::currentDateTime();
+  QString strdate = QLocale{QLocale::Spanish}.toString(date2, "dddd, d MMMM");
+  date->setText(strdate);
 
   bool updateAvailable = update_widget->refresh();
   int alerts = alerts_widget->refresh();
